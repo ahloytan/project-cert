@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<link rel="stylesheet" type="text/css" href="app/styles/css/app.css" />
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Cache-control" content="public">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Preloading_content#Cross-origin_fetches -->
+  <link rel="preload" href="app/styles/fonts/Montserrat-Light.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="app/styles/fonts/Montserrat-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="app/styles/fonts/Montserrat-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+  <!-- https://stackoverflow.com/questions/436411/where-should-i-put-script-tags-in-html-markup -->
+
+  <title>Project Cert</title>
+</head>
+
+<body>
+  <div id="root">
+    <div class="header">Achievements</div>
+    <div class="container">
+      <div class="main">
+        <select name="" id="searchBar">
+          <template v-for="opt in item" >
+            <dropdown-option :val="opt.val" v-html="opt.val"></dropdown-option>
+          </template>
+        </select>
+      </div>
+    </div>
+    <div id="certHolder" class="certHolder">
+      <!-- //https://stackoverflow.com/questions/37534249/nested-arrays-of-objects-and-v-for -->
+      <template v-for="i in item">
+        <image-holder v-for="each in i.image" :key="i.year + each.name" :dir="dir + i.year + '/'" :name="each.name" :ext="ext" :year="prefix + i.year" ></image-holder>
+      </template>
+    </div>
+  </div>
+</body>
+<script src="app/scripts/compiledJs/bundle.js" charset="utf-8"></script>
+</html>
